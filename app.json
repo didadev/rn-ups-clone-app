@@ -28,6 +28,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d2160502-ebf9-4873-b58c-47de2b98a4a9"
+      }
+    },
+    "owner": "didadev"
   }
 }

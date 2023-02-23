@@ -1,20 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { TailwindProvider } from "tailwind-rn";
+import utilities from "./tailwind.json";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  gql,
+} from "@apollo/client";
+import { NavigationContainer } from "@react-navigation/native";
+import RootNavigator from "./navigator/RootNavigator";
+
+const client = new ApolloClient({
+  uri: "http://localhost:5001/api/kissable-ibex",
+  cache: new InMemoryCache(),
+});
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <TailwindProvider utilities={utilities}>
+      <ApolloProvider client={client}>
+        <NavigationContainer>
+          <RootNavigator />
+        </NavigationContainer>
+      </ApolloProvider>
+    </TailwindProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
